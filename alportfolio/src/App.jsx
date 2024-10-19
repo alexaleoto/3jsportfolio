@@ -70,11 +70,11 @@ const App = () => {
               </p>
               <a href="https://github.com/ENiA-collective/collective" className="project-link">View on GitHub</a>
             </div>
-            <div className="project-card">
+            {/* <div className="project-card">
               <h3>Project 2</h3>
               <p>A brief description of this project and what makes it awesome.</p>
               <a href="#" className="project-link">View Project</a>
-            </div>
+            </div> */}
           </div>
         </div>
       </motion.section>

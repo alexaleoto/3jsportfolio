@@ -1,0 +1,234 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: #0D0D0D; /* Dark background */
+  color: #F5F5F5; /* Light text for contrast */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #0D0D0D;
+  border-bottom: 2px solid #FF007F; /* Neon pink */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 15px 0;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FF007F; /* Neon pink */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #FF007F;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #8A2BE2; /* Neon purple on hover */
+}
+
+/* Hero Section */
+.hero {
+  background-color: #0D0D0D;
+  color: #F5F5F5;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.intro-text {
+  font-size: 2.2rem;
+  max-width: 700px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  color: #FF007F; /* Neon pink */
+}
+
+.highlighted-link {
+  color: #8A2BE2; /* Neon purple */
+  text-decoration: underline;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: 2px solid #FF007F;
+  color: #FF007F;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #FF007F;
+  color: #0D0D0D;
+  transform: translateY(-2px);
+}
+
+/* About Section */
+.about {
+  background: #0D0D0D;
+  color: #F5F5F5;
+  padding: 80px 0;
+}
+
+.about h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #FF007F; /* Neon pink */
+}
+
+.about p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* Projects Section */
+.projects {
+  background: #0D0D0D;
+  color: #F5F5F5;
+  padding: 80px 0;
+}
+
+.projects h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #FF007F;
+}
+
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project-card {
+  background-color: #1A1A1A; /* Slightly lighter for card contrast */
+  border: 2px solid #FF007F;
+  padding: 20px;
+  width: calc(50% - 20px);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: #8A2BE2; /* Neon purple on hover */
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #FF007F;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: #D0D0D0;
+  margin-bottom: 15px;
+}
+
+.project-link {
+  font-weight: bold;
+  color: #8A2BE2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: #FF007F;
+}
+
+/* Contact Section */
+.contact {
+  background-color: #0D0D0D;
+  color: #F5F5F5;
+  text-align: center;
+  padding: 60px 0;
+  border-top: 2px solid #FF007F;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #FF007F;
+}
+
+.contact p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+  color: #D0D0D0;
+}
+
+.contact-links {
+  margin-top: 20px;
+}
+
+.contact-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #8A2BE2; /* Neon purple */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.contact-links a:hover {
+  color: #FF007F; /* Neon pink */
+}
+
+/* Utility Styles */
+h1, h2, h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

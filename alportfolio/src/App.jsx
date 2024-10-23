@@ -1,8 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com';
 import './App.css';
 
 const App = () => {
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const toggleContactForm = () => {
+    setShowContactForm(!showContactForm);
+    setStatusMessage(''); // Clear status message when showing the form
+  };
+
+  const sanitizeInput = (value) => value.replace(/<[^>]*>?/gm, '');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: sanitizeInput(value) });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatusMessage('Please fill in all fields.');
+      return;
+    }
+
+    emailjs.send(
+      'YOUR_SERVICE_ID', 
+      'YOUR_TEMPLATE_ID', 
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Alexa',
+      },
+      'YOUR_USER_ID'
+    )
+    .then(() => {
+      setStatusMessage('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+    })
+    .catch(() => {
+      setStatusMessage('Failed to send message. Please try again later.');
+    });
+  };
+
   return (
     <div className="app">
       <motion.nav 
@@ -32,7 +76,7 @@ const App = () => {
             Hi, I'm Alexa Leoto.<br />
             I'm a software engineer based in NYC, passionate about building user-friendly applications and solving complex problems with clean, efficient code.
           </p>
-          <a href="#projects" className="cta-button">View My Work</a>
+        <a href="#projects" className="cta-button">View My Work</a>
         </div>
       </motion.header>
 
@@ -46,8 +90,7 @@ const App = () => {
         <div className="container">
           <h2>About Me</h2>
           <p>
-            With a background in cybersecurity and a passion for creative problem-solving, I bring a unique perspective to every project. 
-            My goal is to create applications that not only function smoothly but also have a meaningful impact. I believe in building software that empowers users and contributes to the greater good.
+            I bring a blend of technical skills and people skills, shaped by my background in software engineering and hands-on customer service. With a foundation in building secure, scalable applications, I have experience in creating intuitive user interfaces and back-end systems using technologies like React, Node.js, and Python. My years of customer-facing roles have honed my communication skills, enabling me to bridge the gap between technical concepts and user needs. I excel in collaborative environments, where I can leverage both my technical knowledge and interpersonal skills to drive projects forward and deliver solutions that align with both business objectives and user expectations.
           </p>
         </div>
       </motion.section>
@@ -63,21 +106,57 @@ const App = () => {
           <h2>My Work</h2>
           <div className="project-list">
             <div className="project-card" id="collective-project">
-              <h3>ENiA Collective</h3>
+              <h3>Collective</h3>
               <p>
                 A civic tech project focused on increasing community engagement through an accessible platform. 
                 I worked on building features that allow users to organize local events, share resources, and participate in discussions.
               </p>
               <a href="https://github.com/ENiA-collective/collective" className="project-link">View on GitHub</a>
             </div>
-            {/* <div className="project-card">
-              <h3>Project 2</h3>
-              <p>A brief description of this project and what makes it awesome.</p>
-              <a href="#" className="project-link">View Project</a>
-            </div> */}
           </div>
         </div>
       </motion.section>
+
+      {showContactForm && (
+        <motion.div 
+          className="contact-form-container"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="container">
+            <h2>Contact Me</h2>
+            <form className="contact-form" onSubmit={sendEmail}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+              <button type="submit" className="cta-button">Send Message</button>
+            </form>
+            {statusMessage && <p className="status-message">{statusMessage}</p>}
+            <button onClick={toggleContactForm} className="cta-button">Back</button>
+          </div>
+        </motion.div>
+      )}
 
       <motion.footer 
         id="contact" 
@@ -92,9 +171,9 @@ const App = () => {
             Let’s connect! Feel free to reach out if you're interested in working together or just want to chat.
           </p>
           <div className="contact-links">
-            <a href="mailto:alexaricardleoto@gmail.com">Email Me</a>
-            <a href="https://www.linkedin.com/in/alexa-leoto/">LinkedIn</a>
-            <a href="https://github.com/alexaleoto">GitHub</a>
+            {/* <a onClick={toggleContactForm} href="#contact">Email Me</a> */}
+            <a href="https://www.linkedin.com/in/alexa-leoto/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/alexaleoto" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
       </motion.footer>
